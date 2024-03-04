@@ -1,4 +1,4 @@
-import React from 'react'
+import PropTypes from 'prop-types';
 import { Button, ModalBody, ModalDialog, ModalHeader, ModalTitle } from 'react-bootstrap'
 import "./Modal.css"
 /**
@@ -35,5 +35,11 @@ const Modal = ({ onClose, toggle }) => {
         )
     )
 }
+
+Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    toggle: PropTypes.bool.isRequired,
+};
+
 
 export default Modal

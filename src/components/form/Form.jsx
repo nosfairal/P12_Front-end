@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Form.css";
 
-import statesData from "../../data/state.json";
-import departmentData from "../../data/department.json";
+import statesData from "../../data/states.json";
+import departmentData from "../../data/departments.json";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import Select from "react-select";
 import { useDispatch } from "react-redux";
-import { addEmployee } from "../../RTK/Slice/dataSlice";
+import { addEmployee } from "../../redux/utils/dataSLice";
 import Modal from "../Modal/Modal";
 
 /**
@@ -372,7 +372,7 @@ const Form = () => {
                             id="department"
                             aria-labelledby="department"
                             styles={{
-                                control: (provided, state) => ({
+                                control: (provided) => ({
                                     ...provided,
                                     border: errors.department
                                         ? "1px solid red"

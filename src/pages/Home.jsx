@@ -1,51 +1,35 @@
-import { useCallback, useState } from "react";
-import EmployeeCreationForm from "../components/Form/EmployeeCreationForm"
-import SeparationUI from "../components/SeparationUI"
-import { useDispatch, useSelector } from "react-redux";
-import { createEmployee } from "../redux/features/employeesSlice";
-import NotificationModal from "notification-cmp";
-import { Link } from "react-router-dom";
+import { useEffect } from 'react'
+import Header from '../components/Header/Header'
+import Form from '../components/form/Form.jsx'
 
-
+import img1 from "../assets/hr_text1.webp"
+/**
+ * Home - View 
+ * @returns {JSX.Element} - Home View JSX element.
+ */
 const Home = () => {
-    const [ToastVisible, setIsVisible] = useState(false);
-    const [toastMessage, setToastMessage] = useState('');
-    const [error, setError] = useState(false);
-    const [isChoice, setIsChoice] = useState(false);
-    const [employee, setIsEmployee] = useState(null);
-    const listEmployees = useSelector((state) => state.employees.list)
-    const dispatch = useDispatch()
 
-    const handleClickYes = useCallback(() => {
-        dispatch(createEmployee([...listEmployees, employee]));
-    }, [dispatch, listEmployees, employee])
+    useEffect(() => {
+        document.title = "HRnet - Form"
 
-    const handleToast = (isError, message, employeeTmp, choice) => {
-        setError(isError);
-        setToastMessage(message);
-        setIsVisible(true);
-        employeeTmp && setIsEmployee(employeeTmp);
-        setIsChoice(choice)
-    };
-
+    }, [])
     return (
         <>
-            <h1 className="text-secondary text-[40px] w-[260px] p-5 md:p-5">
-                Create New Employee
-            </h1>
-            <NotificationModal
-                isVisible={ToastVisible}
-                message={toastMessage}
-                error={error}
-                setter={setIsVisible}
-                onYes={handleClickYes}
-                isChoice={isChoice}
-                successElement={<Link className='underline' to="/employees">Check list employees</Link>}
-            />
-            <SeparationUI />
-            <EmployeeCreationForm onToast={handleToast} />
-            <SeparationUI />
-            <footer className="h-[105px]" />
+            <Header title="HRnet" />
+            <main>
+                <div
+                    className='image'
+                    style={{
+                        backgroundImage: `url(${img1})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        width: "calc(50% - 25px)",
+                        height: '300px'
+                    }}
+                ></div>
+                <Form />
+            </main>
         </>
     )
 }

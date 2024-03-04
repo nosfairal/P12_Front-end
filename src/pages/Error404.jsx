@@ -1,7 +1,25 @@
-const Error404 = () => {
+import Header from '../components/Header/Header'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+/**
+ * Error - View 
+ * @returns {JSX.Element} - Error View JSX element.
+ */
+const Error = () => {
+    useEffect(() => {
+        document.title = "HRnet - Error"
+    })
     return (
-        <div>Error404</div>
+        <>
+            <Header />
+            <main className='error-main'>
+                <h2>404 Error</h2>
+                <p>This Page doesn&apos;t exist.</p>
+                <Link to="/">Back to Home Page</Link>
+            </main>
+        </>
+
     )
 }
 
-export default Error404
+export default Error
